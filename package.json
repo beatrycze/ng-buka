@@ -1,0 +1,16 @@
+{
+  "name": "ng-buka",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-submenu": "^2.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Beata Szczygielska <devinspe17@gmail.com>",
+  "license": "MIT"
+}

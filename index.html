@@ -1,0 +1,97 @@
+<html>
+<head>
+    <title>Buka</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="node_modules/bootstrap-submenu/dist/css/bootstrap-submenu.min.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.11/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!--Bootstrap dropdown menu needs jQuery-->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/bootstrap-submenu/dist/js/bootstrap-submenu.js" defer></script>
+    <script src="main.js"></script>
+</head>
+<body ng-app="Buka" ng-controller="GlobalCtrl">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a id="home-page" class="navbar-brand" href="#" ng-click="display('homepage')">BUKA</a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
+            <ul id="main-menu" class="nav navbar-nav">
+                <li id="my-library" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-submenu data-toggle="dropdown" role="button"
+                        aria-haspopup="true" aria-expanded="false">
+                        My library<span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a id ="all-books-filter" href="#" ng-click="display('allBooksList')">All books</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a id ="paper-book-filter" href="#">Paper books</a></li>
+                        <li><a id ="e-book-filter" href="#">E-books</a></li>
+                        <li><a id ="audiobook-filter" href="#">Audiobooks</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Search by</li>
+                        <li id="open-submenu-forms" class="dropdown-submenu">
+                            <a href="#" id="click-submenu-forms">Forms</a>
+                            <div id="spinner-submenu-forms"></div>
+                        </li>
+                        <li id="open-submenu-genres" class="dropdown-submenu">
+                            <a href="#" id="click-submenu-genres">Genres</a>
+                            <div id="spinner-submenu-genres"></div>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a id ="multi-filter" href="#">Advanced filters</a></li>
+                    </ul>
+                </li>
+
+                <li id="add-book-form"><a href="#add-book">Add book</a></li>
+                <li id="wish-list-page"><a href="#wish-list" ng-click="display('wishList')">Wish list</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+
+    <div class="container">
+        <div ng-controller="HomepageCtrl">
+            <div ng-show="isDisplayed('homepage')" class="starter-template"> <!--jak INACZEJ złapać właściwą zakładkę?-->
+                <h1>{{title}}</h1>
+                <p class="lead">{{subtitle}}</p>
+                <img src="img/buka-hatifnaty.png" />
+            </div>
+        </div>
+
+        <div ng-controller="WishListCtrl">
+            <div ng-show="isDisplayed('wishList')">
+                <h1>{{title}}</h1>
+            </div>
+        </div>
+
+        <div ng-controller="MyLibraryCtrl">
+            <div ng-show="isDisplayed('allBooksList')"> <!--jak INACZEJ złapać właściwą zakładkę? jak zdynamizować parametryzację listy książek?-->
+                <p>
+                    <h2>{{header}}</h2>
+                    <p>Total: <kbd><strong>{{books.length}}</strong></kbd></p>
+                </p>
+                <ol>
+                    <li ng-repeat="book in books">
+                        <div class="row-separator">
+                            <em>{{book.title}}</em>, <strong>{{book.author}}</strong>
+                            <p>{{book.description}}</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+    </div><!-- /.container -->
+
+</body>
+</html>
